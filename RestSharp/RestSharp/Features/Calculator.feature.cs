@@ -331,7 +331,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Precision", precision);
             argumentsOfScenario.Add("Result", result);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction of the square root", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 67
+#line 66
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -351,10 +351,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 68
+#line 67
  testRunner.Given(string.Format("I enter the  {0} and {1} into the searchfield", number, precision), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 69
+#line 68
  testRunner.Then(string.Format("The square root of entered number = {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
