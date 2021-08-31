@@ -257,7 +257,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("10", "5", "\'/\'", "3", "2", null)]
         [NUnit.Framework.TestCaseAttribute("30", "10", "\'/\'", "3", "3", null)]
         [NUnit.Framework.TestCaseAttribute("25", "5", "\'/\'", "3", "5", null)]
-        [NUnit.Framework.TestCaseAttribute("5.8", "3.6", "\'/\'", "0", "1.61", null)]
+        [NUnit.Framework.TestCaseAttribute("5.8", "3.6", "\'/\'", "3", "1.61", null)]
         public virtual void DivideTwoNumbers(string first, string second, string action, string precision, string result, string[] exampleTags)
         {
             string[] @__tags = new string[] {

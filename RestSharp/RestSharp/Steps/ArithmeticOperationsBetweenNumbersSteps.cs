@@ -57,7 +57,7 @@ namespace RestSharp.Test.Steps
         {
             response = client.Execute(request);
             dynamic result = JsonConvert.DeserializeObject(response.Content);
-            Assert.AreEqual($"{ExpectedResult}", result["result"].ToString(), "The result isn't correct");
+            Assert.AreEqual($"{ExpectedResult}", result["result"].ToString(), "The Actual result isn't as expected");
         }
         
         [Then(@"The square root of entered number = (.*)")]
