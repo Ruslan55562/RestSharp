@@ -1,7 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using RestSharp.Test.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace RestSharp.Test.Steps
@@ -9,47 +12,50 @@ namespace RestSharp.Test.Steps
     [Binding]
     public class ArithmeticOperationsBetweenNumbersSteps
     {
-        string JsonBody;
+        APIHelper helper = new APIHelper();
         IRestClient client;
         IRestRequest request;
         IRestResponse response;
-        const string APIUrl = "http://api.mathjs.org/v4/";
-        void InitializeClient()
+        private readonly ScenarioContext _scenarioContext;
+
+        string GetScenarioExpression(ScenarioContext ScenarioExpr)
         {
-            client = new RestClient(APIUrl);
-            client.UserAgent = "Learning RestSharp";
+            return ScenarioExpr.Get<string>("FirstNumber") + ScenarioExpr.Get<string>("Action") + ScenarioExpr.Get<string>("SecondNumber");
         }
+
+        public ArithmeticOperationsBetweenNumbersSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+
+
         [Given(@"I have entered (.*) into the searchfield")]
         public void GivenIHaveEnteredIntoTheSearchfield(double FirstNumber)
         {
-            InitializeClient();
-            request = new RestRequest("", Method.POST);
-            JsonBody = $"{FirstNumber}";
+            client = helper.InitializeClient();
+            request = helper.InitializePostRequest();
+            _scenarioContext.Add("FirstNumber", $"{FirstNumber}");
         }
 
         [Given(@"I have entered the '(.*)' into the searchfield")]
         public void GivenIHaveEnteredTheIntoTheSearchfield(string Action)
         {
-            JsonBody += Action;
+            _scenarioContext.Add("Action", $"{Action}");
         }
 
         [Given(@"I have entered the (.*) number and (.*) into the searchfield")]
         [Obsolete]
         public void GivenIHaveEnteredTheNumberAndIntoTheSearchfield(double SecondNumber, int precision)
         {
-            JsonBody += $"{SecondNumber}";
-            request.AddJsonBody(new { expr = $"{JsonBody}", precision = $"{precision}" }).RequestFormat = DataFormat.Json;
+            _scenarioContext.Add("SecondNumber", $"{SecondNumber}");
+            request.AddJsonBody(new { expr = GetScenarioExpression(_scenarioContext), precision = $"{precision}" }).RequestFormat = DataFormat.Json;
         }
 
         [Given(@"I enter the  (.*) and (.*) into the searchfield")]
         public void GivenIEnterTheAndIntoTheSearchfield(double SqrtNumber, int precision)
         {
-            InitializeClient();
-            request = new RestRequest
-            {
-                Resource = "?expr={sqrt(Number)}&precision={precision}",
-                Method = Method.GET
-            };
+            client = helper.InitializeClient();
+            request = helper.InitializeGetRequest();
             request.AddUrlSegment("sqrt(Number)", $"sqrt({SqrtNumber})").AddUrlSegment("precision", $"{precision}");
         }
 
@@ -57,8 +63,7 @@ namespace RestSharp.Test.Steps
         public void ThenTheResultShouldBeOnTheScreen(double ExpectedResult)
         {
             response = client.Execute(request);
-            dynamic result = JsonConvert.DeserializeObject(response.Content);
-            Assert.AreEqual($"{ExpectedResult}", result["result"].ToString(), "The Actual result isn't as expected");
+            Assert.AreEqual($"{ExpectedResult}", helper.DesirializePOSTResponseContent(response), "The Actual result isn't as expected");
         }
 
         [Then(@"The square root of entered number = (.*)")]
