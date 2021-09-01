@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 #Feature Files
 Calculator.feature.cs
+*.feature.cs
