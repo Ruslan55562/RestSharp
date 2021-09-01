@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #Feature Files
-*.feature.cs
+Calculator.feature.cs
