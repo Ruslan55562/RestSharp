@@ -13,9 +13,9 @@ namespace RestSharp.Test.Steps
     public class ArithmeticOperationsBetweenNumbersSteps
     {
         APIHelper helper = new APIHelper();
-        IRestClient client;
-        IRestRequest request;
-        IRestResponse response;
+        private IRestClient client;
+        private IRestRequest request;
+        private IRestResponse response;
         private readonly ScenarioContext _scenarioContext;
 
         string GetScenarioExpression(ScenarioContext ScenarioExpr)

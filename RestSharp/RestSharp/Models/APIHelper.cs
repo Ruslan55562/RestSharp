@@ -7,8 +7,8 @@ namespace RestSharp.Test.Models
 {
     class APIHelper
     {
-        public IRestClient client;
-        public IRestRequest request;
+        protected IRestClient client;
+        protected IRestRequest request;
         private const string APIUrl = "http://api.mathjs.org/v4/";
 
         public IRestClient InitializeClient()
