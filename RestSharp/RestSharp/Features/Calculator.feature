@@ -7,7 +7,7 @@ Scenario Outline: Add two numbers
 Add two numbers using the mathjs API
 	Given I have entered <First> into the searchfield
 	And I have entered the <Action> into the searchfield
-	And I have entered the <Second> number and <Precision> into the searchfield
+	And I have entered the <Second> number and <Precision> precision into the searchfield
 	Then the result <Result> should be on the screen
 
 	Examples:
@@ -22,7 +22,7 @@ Scenario Outline: Subtract two numbers
 Subtract two numbers using the mathjs API
 	Given I have entered <First> into the searchfield
 	And I have entered the <Action> into the searchfield
-	And I have entered the <Second> number and <Precision> into the searchfield
+	And I have entered the <Second> number and <Precision> precision into the searchfield
 	Then the result <Result> should be on the screen
 
 	Examples:
@@ -37,7 +37,7 @@ Scenario Outline: Multiplicate two numbers
 Multiplicate two numbers using the mathjs API
 	Given I have entered <First> into the searchfield
 	And I have entered the <Action> into the searchfield
-	And I have entered the <Second> number and <Precision> into the searchfield
+	And I have entered the <Second> number and <Precision> precision into the searchfield
 	Then the result <Result> should be on the screen
 
 	Examples:
@@ -52,7 +52,7 @@ Scenario Outline: Divide two numbers
 Divide two numbers using the mathjs API
 	Given I have entered <First> into the searchfield
 	And I have entered the <Action> into the searchfield
-	And I have entered the <Second> number and <Precision> into the searchfield
+	And I have entered the <Second> number and <Precision> precision into the searchfield
 	Then the result <Result> should be on the screen
 
 	Examples:

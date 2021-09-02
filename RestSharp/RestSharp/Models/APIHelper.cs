@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RestSharp.Test.Models
 {
@@ -24,12 +22,11 @@ namespace RestSharp.Test.Models
             return APIUrl;
         }
 
-        public IRestRequest InitializePostRequest()
+        public IRestRequest CreatePostRequest()
         {
-            request = new RestRequest("", Method.POST);
-            return request;
+            return new RestRequest("", Method.POST);
         }
-        public IRestRequest InitializeGetRequest()
+        public IRestRequest CreateGetRequest()
         {
             request = new RestRequest
             {
@@ -38,10 +35,15 @@ namespace RestSharp.Test.Models
             };
             return request;
         }
+        public IRestResponse GetPOSTResponse(IRestClient client, IRestRequest request)
+        {
+            return client.Execute(request);
+        }
         public string DesirializePOSTResponseContent(IRestResponse Response)
         {
             dynamic result = JsonConvert.DeserializeObject(Response.Content);
             return result["result"].ToString();
         }
+       
     }
 }
